@@ -18,7 +18,7 @@ const searchBody = `{"hits":[
 
 func TestSearch(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(searchBody))
+		_, _ = w.Write([]byte(searchBody))
 	}))
 	t.Cleanup(srv.Close)
 	s := New()

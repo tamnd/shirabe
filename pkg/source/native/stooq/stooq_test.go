@@ -21,7 +21,7 @@ func TestStockChart(t *testing.T) {
 	var gotPath string
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		gotPath = r.URL.RawQuery
-		w.Write([]byte(csvBody))
+		_, _ = w.Write([]byte(csvBody))
 	}))
 	t.Cleanup(srv.Close)
 	s := New()

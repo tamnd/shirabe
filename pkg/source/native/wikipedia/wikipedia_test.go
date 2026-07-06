@@ -26,10 +26,10 @@ func server(t *testing.T) *Source {
 	t.Helper()
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if strings.HasPrefix(r.URL.Path, "/w/api.php") {
-			w.Write([]byte(openSearchBody))
+			_, _ = w.Write([]byte(openSearchBody))
 			return
 		}
-		w.Write([]byte(summaryBody))
+		_, _ = w.Write([]byte(summaryBody))
 	}))
 	t.Cleanup(srv.Close)
 	s := New()

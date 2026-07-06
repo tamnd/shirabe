@@ -33,13 +33,13 @@ func (s *Server) streamSSE(w http.ResponseWriter, r *http.Request, q string) {
 			if err != nil {
 				continue
 			}
-			fmt.Fprintf(w, "event: %s\ndata: %s\n\n", ev.Type, data)
+			_, _ = fmt.Fprintf(w, "event: %s\ndata: %s\n\n", ev.Type, data)
 			flusher.Flush()
 			if ev.Type == "done" {
 				return
 			}
 		case <-heartbeat.C:
-			fmt.Fprint(w, ": ping\n\n")
+			_, _ = fmt.Fprint(w, ": ping\n\n")
 			flusher.Flush()
 		case <-r.Context().Done():
 			return

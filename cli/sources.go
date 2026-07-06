@@ -22,13 +22,13 @@ func newSourcesCmd() *cobra.Command {
 				return json.NewEncoder(os.Stdout).Encode(statuses)
 			}
 			w := tabwriter.NewWriter(os.Stdout, 0, 4, 2, ' ', 0)
-			fmt.Fprintln(w, "NAME\tSEARCH\tRESOLVE\tHOSTS\tINTENTS\tSTATUS")
+			_, _ = fmt.Fprintln(w, "NAME\tSEARCH\tRESOLVE\tHOSTS\tINTENTS\tSTATUS")
 			for _, s := range statuses {
 				status := "ok"
 				if !s.Available {
 					status = "missing"
 				}
-				fmt.Fprintf(w, "%s\t%v\t%v\t%s\t%s\t%s\n",
+				_, _ = fmt.Fprintf(w, "%s\t%v\t%v\t%s\t%s\t%s\n",
 					s.Name, s.Search, s.Resolve,
 					strings.Join(s.Hosts, ","), strings.Join(s.Intents, ","), status)
 			}

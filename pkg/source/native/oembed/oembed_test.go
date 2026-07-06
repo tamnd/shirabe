@@ -17,7 +17,7 @@ const videoBody = `{"type":"video","title":"A Video","author_name":"Chan",
 
 func TestResolveVideo(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(videoBody))
+		_, _ = w.Write([]byte(videoBody))
 	}))
 	t.Cleanup(srv.Close)
 	s := New()

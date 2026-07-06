@@ -70,7 +70,7 @@ func (s *Server) Handler() http.Handler {
 				http.Error(w, "missing UI", http.StatusInternalServerError)
 				return
 			}
-			w.Write(data)
+			_, _ = w.Write(data)
 			return
 		}
 		fileServer.ServeHTTP(w, r)

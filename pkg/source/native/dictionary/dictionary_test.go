@@ -16,7 +16,7 @@ const body = `[{"word":"serendipity","phonetic":"/ˌsɛɹ.ənˈdɪp.ɪ.ti/","mea
 
 func TestDefine(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(body))
+		_, _ = w.Write([]byte(body))
 	}))
 	t.Cleanup(srv.Close)
 	s := New()

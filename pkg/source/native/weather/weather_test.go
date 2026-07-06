@@ -27,10 +27,10 @@ func server(t *testing.T) *Source {
 	t.Helper()
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if strings.HasPrefix(r.URL.Path, "/v1/search") {
-			w.Write([]byte(geoBody))
+			_, _ = w.Write([]byte(geoBody))
 			return
 		}
-		w.Write([]byte(fcBody))
+		_, _ = w.Write([]byte(fcBody))
 	}))
 	t.Cleanup(srv.Close)
 	s := New()

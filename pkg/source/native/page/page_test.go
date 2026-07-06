@@ -13,7 +13,7 @@ import (
 func resolveDoc(t *testing.T, doc string) schema.Card {
 	t.Helper()
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(doc))
+		_, _ = w.Write([]byte(doc))
 	}))
 	t.Cleanup(srv.Close)
 	s := New()

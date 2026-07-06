@@ -65,7 +65,7 @@ func (s *Server) handleImg(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusBadGateway, "fetch failed")
 		return
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	ct := resp.Header.Get("Content-Type")
 	if resp.StatusCode != http.StatusOK || !strings.HasPrefix(ct, "image/") {
 		writeError(w, http.StatusBadGateway, "not an image")
