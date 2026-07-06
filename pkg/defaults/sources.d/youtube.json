@@ -1,0 +1,40 @@
+{
+  "name": "youtube",
+  "binary": "ytb",
+  "priority": 50,
+  "hosts": ["youtube.com", "youtu.be"],
+  "search": {
+    "args": ["search", "{query}", "-n", "{n}", "-o", "jsonl", "-q", "--type", "video"],
+    "output": "jsonl",
+    "kind": "video",
+    "timeout_ms": 8000,
+    "map": {
+      "title": "title",
+      "url": "url",
+      "snippet": "description",
+      "thumbnail": "thumbnail_url",
+      "body.channel": "channel_name",
+      "body.duration": "duration_text",
+      "body.views": "view_count",
+      "body.published": "published_text",
+      "body.embed_url": "embed_url"
+    }
+  },
+  "resolve": {
+    "args": ["video", "{url}", "-o", "jsonl", "-q"],
+    "output": "jsonl",
+    "kind": "video",
+    "timeout_ms": 8000,
+    "map": {
+      "title": "title",
+      "url": "url",
+      "snippet": "description",
+      "thumbnail": "thumbnail_url",
+      "body.channel": "channel_name",
+      "body.duration": "duration_text",
+      "body.views": "view_count",
+      "body.published": "published_text",
+      "body.embed_url": "embed_url"
+    }
+  }
+}

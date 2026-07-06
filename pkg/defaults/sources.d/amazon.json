@@ -1,0 +1,39 @@
+{
+  "name": "amazon",
+  "binary": "amz",
+  "priority": 50,
+  "hosts": ["amazon.com"],
+  "search": {
+    "args": ["search", "{query}", "-n", "{n}", "-o", "jsonl", "-q"],
+    "output": "jsonl",
+    "kind": "product",
+    "timeout_ms": 12000,
+    "map": {
+      "title": "title",
+      "url": "url",
+      "thumbnail": "image",
+      "body.price": "price",
+      "body.currency": "currency",
+      "body.rating": "rating",
+      "body.rating_count": "ratings_count"
+    }
+  },
+  "resolve": {
+    "args": ["product", "{url}", "-o", "jsonl", "-q"],
+    "output": "jsonl",
+    "kind": "product",
+    "timeout_ms": 12000,
+    "map": {
+      "title": "title",
+      "url": "url",
+      "snippet": "description",
+      "thumbnail": "images.0",
+      "body.price": "price",
+      "body.currency": "currency",
+      "body.rating": "rating",
+      "body.rating_count": "ratings_count",
+      "body.availability": "availability",
+      "body.merchant": "sold_by"
+    }
+  }
+}
