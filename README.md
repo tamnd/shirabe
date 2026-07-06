@@ -17,8 +17,39 @@ If you have `ytb` or `amz` on your PATH they light up automatically.
 ## Install
 
 ```sh
+# Go
 go install github.com/tamnd/shirabe/cmd/shirabe@latest
+
+# Homebrew (macOS)
+brew install tamnd/tap/shirabe
+
+# Scoop (Windows)
+scoop bucket add tamnd https://github.com/tamnd/scoop-bucket
+scoop install shirabe
 ```
+
+On Linux, a signed apt and dnf repository tracks every release:
+
+```sh
+# Debian, Ubuntu
+curl -fsSL https://tamnd.github.io/linux-repo/gpg.key \
+  | sudo gpg --dearmor -o /usr/share/keyrings/tamnd.gpg
+echo "deb [signed-by=/usr/share/keyrings/tamnd.gpg] https://tamnd.github.io/linux-repo/apt stable main" \
+  | sudo tee /etc/apt/sources.list.d/tamnd.list
+sudo apt update && sudo apt install shirabe
+
+# Fedora, RHEL
+sudo dnf config-manager --add-repo https://tamnd.github.io/linux-repo/dnf/tamnd.repo
+sudo dnf install shirabe
+```
+
+Prefer a prebuilt binary? Grab an archive, a `.deb`/`.rpm`/`.apk`, or a checksum from [releases](https://github.com/tamnd/shirabe/releases). Or run the server as a container:
+
+```sh
+docker run -p 8879:8879 ghcr.io/tamnd/shirabe
+```
+
+The image serves the native sources only; exec sources need their CLIs on PATH, so run those installs on the host.
 
 ## Quickstart
 
